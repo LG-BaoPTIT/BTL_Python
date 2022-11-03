@@ -1,11 +1,12 @@
 # GenData.py
 
 #import sys
+import sys
 import numpy as np
 import cv2
 
 
-#Biến cấp độ modun 
+#Biến cấp độ modun
 MIN_CONTOUR_AREA = 40
 
 
@@ -15,8 +16,9 @@ RESIZED_IMAGE_HEIGHT = 30
 ############################
 def main():
     imgTrainingNumbers = cv2.imread("training_chars.png")             #đọc trong hình ảnh số training
+    #imgTrainingNumbers = cv2.resize(imgTrainingNumbers, dsize=(600,300))
     #imgTrainingNumbers = cv2.resize(imgTrainingNumbers, dsize = None, fx = 0.5, fy = 0.5)
-
+    
     imgGray = cv2.cvtColor(imgTrainingNumbers, cv2.COLOR_BGR2GRAY)          # lấy hình ảnh thang độ xám
     imgBlurred = cv2.GaussianBlur(imgGray, (5,5), 0)                        # blur
     # lọc hình ảnh từ thang độ xám sang đen trắng
@@ -31,7 +33,7 @@ def main():
 
     imgThreshCopy = imgThresh.copy()        # tạo một bản sao của hình ảnh thresh, điều này trong b / c cần thiết findContours sửa đổi hình ảnh
 
-    imgContours, npaContours, npaHierarchy = cv2.findContours(imgThreshCopy,        # hình ảnh đầu vào, hãy đảm bảo sử dụng một bản sao vì hàm sẽ sửa đổi hình ảnh này trong quá trình tìm kiếm đường viền
+    npaContours, npaHierarchy = cv2.findContours(imgThreshCopy,        # hình ảnh đầu vào, hãy đảm bảo sử dụng một bản sao vì hàm sẽ sửa đổi hình ảnh này trong quá trình tìm kiếm đường viền
                                                  cv2.RETR_EXTERNAL,                 # chỉ lấy các đường viền ngoài cùng
                                                  cv2.CHAIN_APPROX_SIMPLE)           # nén các phân đoạn ngang, dọc và chéo và chỉ để lại các điểm cuối của chúng
 
@@ -71,8 +73,8 @@ def main():
             intChar = cv2.waitKey(0)                     # get key press
 
             if intChar == 27:                   # nếu phím esc được nhấn
-               #sys.exit()
-               a=2                      # exit program
+               sys.exit()
+                                   # exit program
             elif intChar in intValidChars:      # nếu ký tự nằm trong danh sách ký tự mà chúng tôi đang tìm kiếm. . .
 
                 intClassifications.append(intChar)        # nối ký tự phân loại vào danh sách ký tự số nguyên (chúng tôi sẽ chuyển đổi thành float sau trước khi ghi vào tệp)

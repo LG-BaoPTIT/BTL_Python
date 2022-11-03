@@ -16,8 +16,8 @@ Max_char = 0.09
 RESIZED_IMAGE_WIDTH = 20
 RESIZED_IMAGE_HEIGHT = 30
 
-img = cv2.imread("data/image/15.jpg")
-img = cv2.resize(img, dsize=(1920, 1080))
+img = cv2.imread("data/image/3.jpg")
+#img = cv2.resize(img, dsize=(1920, 1080))
 
 ###################### Nếu bạn muốn thử tăng độ tương phản #############
 # img2 = cv2.imread("1.jpg")
@@ -40,7 +40,7 @@ imgGrayscaleplate, imgThreshplate = Preprocess.preprocess(img)
 canny_image = cv2.Canny(imgThreshplate, 250, 255)  # Biên Canny
 kernel = np.ones((3, 3), np.uint8)
 dilated_image = cv2.dilate(canny_image, kernel, iterations=1)  # Dilation
-# cv2.imshow("dilated_image",dilated_image)
+cv2.imshow("dilated_image",dilated_image)
 
 ###########################################
 

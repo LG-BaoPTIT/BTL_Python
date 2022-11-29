@@ -15,16 +15,13 @@ Max_char = 0.09
 
 RESIZED_IMAGE_WIDTH = 20
 RESIZED_IMAGE_HEIGHT = 30
+img = cv2.imread("data/image/10.jpg")
+#img = cv2.imread("data/image/2.1.png")
+#img = cv2.imread("data/image/1.1.png")
+#img = cv2.imread("data/image/1.jpg")
+#img = cv2.resize(img, dsize=(1500, 1500))
 
-img = cv2.imread("data/image/3.jpg")
-#img = cv2.resize(img, dsize=(1920, 1080))
 
-###################### Nếu bạn muốn thử tăng độ tương phản #############
-# img2 = cv2.imread("1.jpg")
-# imgGrayscaleplate2, _ = Preprocess.preprocess(img)
-# imgThreshplate2 = cv2.adaptiveThreshold(imgGrayscaleplate2, 250, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, ADAPTIVE_THRESH_BLOCK_SIZE ,ADAPTIVE_THRESH_WEIGHT )
-# cv2.imshow("imgThreshplate2",imgThreshplate2)
-###############################################################
 
 ######## Tải lên mô hình KNN ######################
 npaClassifications = np.loadtxt("classificationS.txt", np.float32)
@@ -120,7 +117,7 @@ if detected == 1:
         thre_mor = cv2.morphologyEx(imgThresh, cv2.MORPH_DILATE, kerel3)
         cont, hier = cv2.findContours(thre_mor, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        cv2.imshow(str(n + 20), thre_mor)
+        #cv2.imshow(str(n + 20), thre_mor)
         cv2.drawContours(roi, cont, -1, (100, 255, 255), 2)  # Vẽ contour các kí tự trong biển số
 
         ##################### Lọc ra các ký tự #################
